@@ -2,7 +2,7 @@
 
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
-
+var validUrl = require('valid-url');
 module.exports = function (app, passport) {
 
 	function isLoggedIn (req, res, next) {
@@ -15,10 +15,9 @@ module.exports = function (app, passport) {
 
 	var clickHandler = new ClickHandler();
 
-	app.route('/')
-		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/index.html');
-		});
+
+			// if (validUrl.isUri(urlHolder))
+		
 
 	app.route('/login')
 		.get(function (req, res) {
